@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""This module contains the entry point of the command intepreter"""
+"""This module contains the entry point of the command interpreter"""
 
 import cmd
 import json
@@ -109,9 +109,16 @@ class HBNBCommand(cmd.Cmd):
             if class_name not in all_classes:
                 print("** class doesn't exist **")
                 return
-            for key, instance in storage.all().items():
-                if class_name == key.split('.')[0]:
-                    instances.append(str(instance))
+            if class_name == "BaseModel":
+                for key, instance in storage.all().items():
+                    if key.split('.')[0] in all_classes:
+                        instances.append(str(instance))
+            else:
+                instances = [
+                    str(instance)
+                    for key, instance in storage.all().items()
+                    if key.startswith(class_name + ".")
+                ]
         print(instances)
 
     def do_update(self, arg):

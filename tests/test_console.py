@@ -77,6 +77,6 @@ class TestHBNBCommand(TestCase):
             self.assertEqual(mock_stdout.getvalue(),
                              "** instance id missing **\n")
 
+
 if __name__ == '__main__':
     unittest.main()
-

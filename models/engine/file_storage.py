@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""This module serializes instances to a JSON file
-    and deserializes JSON file to instances"""
-
+"""This module serializes instances to a JSON file"""
 import json
 from models.base_model import BaseModel
 from models.user import User
@@ -40,4 +38,4 @@ class FileStorage():
                     class_name = obj["__class__"]
                     self.new(eval(class_name)(**obj))
         except FileNotFoundError:
-            pass
+            return

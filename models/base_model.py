@@ -26,7 +26,7 @@ class BaseModel():
 
     def __str__(self):
         """String representation of the BaseModel instance"""
-        return "f[{type(self).__name__}] ({self.id}) {self.__dict__}"
+        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """Updates updated_at with the current datetime"""

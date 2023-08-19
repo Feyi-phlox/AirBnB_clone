@@ -5,7 +5,7 @@ from datetime import datetime
 import models
 
 
-class BaseModel:
+class BaseModel():
     """Defines the common attributes/methods for other classes"""
     def __init__(self, *args, **kwargs):
         """Constructor method"""
@@ -16,6 +16,8 @@ class BaseModel:
                     setattr(self, key, date)
                 elif key != '__class__':
                     setattr(self, key, value)
+                elif key == '__class__':
+                    pass
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -35,6 +37,6 @@ class BaseModel:
         """Returns a dictionary containing all keys/values of __dict__"""
         new_dict = self.__dict__.copy()
         new_dict['__class__'] = self.__class__.__name__
-        new_dict['created_at'] = new_dict['created_at'].isoformat()
-        new_dict['updated_at'] = new_dict['updated_at'].isoformat()
+        new_dict['created_at'] = self.created_at.isoformat()
+        new_dict['updated_at'] = self.updated_at.isoformat()
         return new_dict
